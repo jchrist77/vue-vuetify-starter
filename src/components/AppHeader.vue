@@ -27,9 +27,9 @@ const appStore = useAppStore()
     <v-tabs align-with-title :items="tabs" center-active />
     <v-spacer />
     <v-btn tile icon="mdi-magnify" />
-    <LanguageSelector />
-    <ThemeSelector />
     <NotificationsPanel />
+    <ThemeSelector />
+    <LanguageSelector />
     <UserPanel />
   </v-app-bar>
 

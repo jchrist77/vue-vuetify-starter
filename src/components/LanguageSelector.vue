@@ -8,7 +8,12 @@ const appStore = useAppStore()
 <template>
   <v-menu>
     <template #activator="{ props }">
-      <v-btn tile :icon="appStore.languageIcon" v-bind="props" />
+      <!-- <v-btn tile :icon="appStore.languageIcon" v-bind="props" /> -->
+      <v-btn tile icon v-bind="props">
+        <v-avatar density="compact" border size="small">
+          <Icon :icon="appStore.languageIcon" height="24" />
+        </v-avatar>
+      </v-btn>
     </template>
 
     <v-list density="compact" class="py-0" :value="appStore.language">

@@ -43,19 +43,9 @@ export const useAppStore = defineStore('app', () => {
     { title: 'Русский', value: 'ru', icon: 'circle-flags:ru' },
   ])
   const language = ref('en')
-  const languageIcon = ref('mdi-translate')
+  const languageIcon = computed(() => languages.value.find(lang => lang.value === language.value)?.icon || 'circle-flags:us')
+  // const languageIcon = ref('mdi-translate')
   const setLanguage = (lang: string) => language.value = lang
-
-  // const isDark = useDark({
-  //   selector: 'html',
-  //   attribute: 'data-theme',
-  //   valueDark: 'dark',
-  //   valueLight: 'light',
-  // })
-  // const toggleDark = useToggle(isDark)
-  // const modeIcon = computed(() => (isDark.value ? '🌞' : '🌙'))
-  // const modeText = computed(() => (isDark.value ? 'Light' : 'Dark'))
-
 
   return {
     appTitle,
