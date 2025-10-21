@@ -17,3 +17,19 @@ export interface AppTabItem {
   appendIcon?: string
   to?: string
 }
+
+export interface AppLanguage {
+  id: string
+  title: string
+  icon?: string
+}
+
+export interface User {
+  id: number
+  name: string
+  email: string
+  phone?: string
+  avatar?: string
+  role?: string
+  status?: 'active' | 'inactive' | 'unknown'
+}

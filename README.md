@@ -31,7 +31,7 @@ This is a feature-rich starter template to kickstart your next Vue.js 3 project.
 2. **Initialize new project from template**
 
    ```sh
-   npx degit jchrist77/vue-vuetify-starter#base
+   npx degit jchrist77/vue-vuetify-starter#app
    ```
 
 3. **Initialize new Git repo**

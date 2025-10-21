@@ -1,10 +1,16 @@
 import { computed, ref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useTheme } from 'vuetify'
-import type { AppNavItem, AppTabItem, AppTheme } from '@/types'
+import type { AppNavItem, AppTabItem, AppTheme, User } from '@/types'
 
 export const useAppStore = defineStore('app', () => {
   const appTitle = 'Starter App'
+
+  // User
+  const user = ref(null as User | null)
+  const rememberPassword = ref(false)
+  const setUser = (_user: User | null) => user.value = _user
+  // onAuthStateChanged(auth, (_user => user.value = _user)
 
   // Navigation
   const navOpen = ref(false)
@@ -32,8 +38,25 @@ export const useAppStore = defineStore('app', () => {
   const currentTheme = computed(() => theme.value === 'system' ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : theme.value)
   const setTheme = (_theme: string) => { $theme.change(_theme); theme.value = _theme }
 
+  // Languages
+  const languages = ref([
+    { id: 'en', title: 'English', icon: 'circle-flags:us' },
+    { id: 'de', title: 'Deutsch', icon: 'circle-flags:de' },
+    { id: 'fr', title: 'Français', icon: 'circle-flags:fr' },
+    { id: 'es', title: 'Español', icon: 'circle-flags:es' },
+    { id: 'it', title: 'Italiano', icon: 'circle-flags:it' },
+    { id: 'ru', title: 'Русский', icon: 'circle-flags:ru' },
+  ])
+  const language = ref('en')
+  const languageIcon = computed(() => languages.value.find(lang => lang.id === language.value)?.icon || 'circle-flags:us')
+  const setLanguage = (lang: string) => language.value = lang
+
   return {
     appTitle,
+    // User
+    user,
+    rememberPassword,
+    setUser,
     // Navigation
     navItems,
     tabItems,
@@ -41,18 +64,22 @@ export const useAppStore = defineStore('app', () => {
     navRail,
     toggleNav,
     toggleNavRail,
-
     // Themes
     themes,
     theme,
     themeIcon,
     currentTheme,
     setTheme,
+    // Languages
+    languages,
+    language,
+    languageIcon,
+    setLanguage,
   }
 },
   {
     persist: {
       storage: sessionStorage,
-      pick: ['navOpen', 'navRail', 'theme'],
+      pick: ['navOpen', 'navRail', 'theme', 'language', 'user'],
     },
   })

@@ -1,6 +1,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
 import ThemeSelector from '@/components/ThemeSelector.vue'
+import LanguageSelector from '@/components/LanguageSelector.vue'
+import UserPanel from '@/components/UserPanel.vue'
 
 defineProps({
   title: { type: String, default: 'App Title' },
@@ -24,6 +26,8 @@ const appStore = useAppStore()
     <v-tabs align-with-title :items="tabItems" center-active />
     <v-spacer />
     <ThemeSelector />
+    <LanguageSelector />
+    <UserPanel />
   </v-app-bar>
 
   <v-navigation-drawer v-model="appStore.navOpen" :location="$vuetify.display.mobile ? 'bottom' : undefined"
