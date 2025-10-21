@@ -23,16 +23,23 @@ This is a feature-rich starter template to kickstart your next Vue.js 3 project.
 
 ### Installation
 
-1. **Initialize new project from template**
-
-   From within an empty project folder run:
+1. **Create new project directory**
    ```sh
-   git init .
-   npx degit jchrist77/vue-vuetify-starter
+   mkdir <my-project-name> && cd <my-project-name>
    ```
 
-2. **Install dependencies**
+2. **Initialize new project from template**
 
+   ```sh
+   npx degit jchrist77/vue-vuetify-starter#base
+   ```
+
+3. **Initialize new Git repo**
+   ```sh
+   git init .
+   ```
+
+4. **Install dependencies**
    ```sh
    npm install
    ```
@@ -82,24 +89,3 @@ This is a feature-rich starter template to kickstart your next Vue.js 3 project.
 - **`src/main.ts`**: The main entry point of the application.
 - **`src/App.vue`**: The main Vue application component.
 - **`tests`**: Unit, integration and e2e tests.
-
-## Development Environment with Nix
-
-This template is configured to use a reproducible development environment through the `.idx/dev.nix` file. This ensures that all developers have the same set of tools and dependencies, leading to a more consistent and reliable development experience.
-
-When you open this project in Firebase Studio, the environment specified in `dev.nix` will be automatically set up for you.
-
-## Creation
-
-```sh
-npm create vite . -- --template vue-ts
-# UI tools
-npm install -y vuetify @iconify/vue @vueuse/core
-npm install -D -y vite-plugin-vuetify @mdi/font
-# Pinia and Vue-Router
-npm install -y pinia pinia-plugin-persistedstate vue-router
-# Testing tools
-npm install -D -y vitest vitest-browser-vue @vue/test-utils jsdom @types/jsdom @types/node tsx
-# Linting tools
-npm install -D -y eslint eslint-plugin-vue prettier @vue/eslint-config-prettier @vue/eslint-config-typescript
-```
