@@ -7,7 +7,6 @@ import { createApp } from 'vue'
 // Vuetify
 import 'vuetify/lib/styles/main.css'
 import '@mdi/font/css/materialdesignicons.css'
-// import { md3 } from 'vuetify/blueprints'
 import { createVuetify } from 'vuetify'
 
 // I18n
@@ -22,12 +21,7 @@ const app = createApp(App)
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
-const vuetify = createVuetify({
-  // blueprint: md3,
-  theme: {
-    // defaultTheme: 'system',
-  },
-})
+const vuetify = createVuetify()
 
 app.use(pinia)
 app.use(router)

@@ -16,40 +16,49 @@ describe('App Store', () => {
     setActivePinia(createPinia())
   })
 
-  it('should have correct initial state for theme and language', () => {
+  it('should have correct initial state for theme', () => {
     const store = useAppStore()
     expect(store.theme).toBe('system')
-    expect(store.language).toBe('en')
+  })
+
+  it('should have the correct tab items', () => {
+    const store = useAppStore()
+    expect(store.tabItems).toEqual([
+      { text: 'Home', prependIcon: 'mdi-home', to: '/' },
+      { text: 'About', prependIcon: 'mdi-information', to: '/about' },
+    ])
   })
 
   it('should have the correct navigation items', () => {
     const store = useAppStore()
-    expect(store.navigationItems).toEqual([
-      { title: 'Home', props: { prependIcon: 'mdi-home', to: '/' } },
-      { title: 'Users', props: { prependIcon: 'mdi-account-multiple', to: '/users' } },
-      { title: 'About', props: { prependIcon: 'mdi-information', to: '/about' } },
+    expect(store.navItems).toEqual([
+      { title: 'Home', prependIcon: 'mdi-home', to: '/' },
+      { title: 'About', prependIcon: 'mdi-information', to: '/about' },
     ])
   })
 
   it('should toggle navigation', () => {
     const store = useAppStore()
-    expect(store.navigation).toBe(false)
-    store.toggleNavigation()
-    expect(store.navigation).toBe(true)
-    store.toggleNavigation()
-    expect(store.navigation).toBe(false)
+    expect(store.navOpen).toBe(false)
+    store.toggleNav()
+    expect(store.navOpen).toBe(true)
+    store.toggleNav()
+    expect(store.navOpen).toBe(false)
+  })
+
+  it('should toggle navigation rail', () => {
+    const store = useAppStore()
+    expect(store.navRail).toBe(false)
+    store.toggleNavRail()
+    expect(store.navRail).toBe(true)
+    store.toggleNavRail()
+    expect(store.navRail).toBe(false)
   })
 
   it('should update theme when setTheme is called', () => {
     const store = useAppStore()
     store.setTheme('dark')
     expect(store.theme).toBe('dark')
-  })
-
-  it('should update language when setLanguage is called', () => {
-    const store = useAppStore()
-    store.setLanguage('fr')
-    expect(store.language).toBe('fr')
   })
 
   it('should return correct themeIcon based on theme', () => {

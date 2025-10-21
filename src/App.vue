@@ -8,9 +8,9 @@ const appStore = useAppStore()
 
 <template>
   <v-app :theme="appStore.currentTheme">
-    <AppHeader title="Vue Starter App" :tabs="appStore.tabItems" :nav="appStore.navigationItems" />
+    <AppHeader :title="appStore.appTitle" :tabItems="appStore.tabItems" :navItems="appStore.navItems" />
 
-    <v-main color="primary" transition="fade-transition">
+    <v-main transition="fade-transition">
       <router-view />
     </v-main>
   </v-app>

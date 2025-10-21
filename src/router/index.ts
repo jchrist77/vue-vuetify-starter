@@ -10,29 +10,11 @@ const router = createRouter({
       meta: { title: 'Home', requiresAuth: false },
     },
     {
-      path: '/users',
-      name: 'users',
-      component: () => import('@/pages/UsersPage.vue'),
-      meta: { title: 'Users', requiresAuth: false },
-    },
-    {
       path: '/about',
       name: 'about',
       component: () => import('@/pages/AboutPage.vue'),
       meta: { title: 'About', requiresAuth: false },
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/pages/LoginPage.vue'),
-      meta: { title: 'Login', requiresAuth: false },
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import('@/pages/RegisterPage.vue'),
-      meta: { title: 'Register', requiresAuth: false },
-    },
+    }
   ]
 })
 
