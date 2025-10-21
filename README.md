@@ -53,6 +53,7 @@ This is a feature-rich starter template to kickstart your next Vue.js 3 project.
 ├── src
 │   ├── assets
 │   ├── components
+│   ├── composables
 │   ├── config
 │   ├── pages
 │   ├── plugins
@@ -62,12 +63,14 @@ This is a feature-rich starter template to kickstart your next Vue.js 3 project.
 │   ├── styles
 │   ├── types
 │   └── main.ts
+│   └── App.vue
 ├── tests
 └── vite.config.ts
 ```
 
-- **`src/assets`**: Static assets like images and fonts.
+- **`src/assets`**: Static assets like images, styles and fonts.
 - **`src/components`**: Reusable Vue components.
+- **`src/composables`**: Reusable Vue composables.
 - **`src/config`**: Configuration files (e.g., environment variables).
 - **`src/pages`**: Application pages (views) for Vue Router.
 - **`src/plugins`**: Vue plugins.
@@ -77,6 +80,7 @@ This is a feature-rich starter template to kickstart your next Vue.js 3 project.
 - **`src/styles`**: Global stylesheets.
 - **`src/types`**: TypeScript type definitions.
 - **`src/main.ts`**: The main entry point of the application.
+- **`src/App.vue`**: The main Vue application component.
 - **`tests`**: Unit, integration and e2e tests.
 
 ## Development Environment with Nix

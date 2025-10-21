@@ -1,5 +1,5 @@
 # Purpose
 
-Directory for Typescript types files.
+Directory for Typescript type definitions.
 
 For example: `user.ts`.
