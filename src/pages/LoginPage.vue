@@ -14,10 +14,19 @@ const rememberMe = ref(false)
 const login = () => {
   if (email.value && password.value) {
     console.log('Logging in with:', email.value, password.value, 'Remember me:', rememberMe.value)
-    const user = {
+
+    const user = email.value === 'admin@demo.com' ? {
       id: 1,
       name: 'John Doe',
       email: email.value,
+      avatar: 'https://randomuser.me/api/portraits/men/78.jpg',
+      role: 'Admin'
+    } : {
+      id: 2,
+      name: 'Jane Doe',
+      email: email.value,
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+      role: 'User'
     }
     appStore.setUser(user)
     router.push('/')
@@ -31,56 +40,55 @@ const login = () => {
       <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12 pa-4">
           <v-card-title class="text-h5">Welcome to {{ appStore.appTitle }}! 👋</v-card-title>
-          <v-card-subtitle>Please sign-in to your account and start the adventure</v-card-subtitle>
+          <v-card-subtitle>Login with your account and start the adventure</v-card-subtitle>
 
           <v-card-text>
             <v-alert color="primary" variant="tonal" class="mb-4">
-              <div>Admin Email: <strong>admin@demo.com</strong> / Pass: <strong>admin</strong></div>
-              <div>User Email: <strong>user@demo.com</strong> / Pass: <strong>client</strong></div>
+              <div @click="email = 'admin@demo.com'; password = 'admin'" class="cursor-pointer">
+                Admin email: <strong>admin@demo.com</strong> / Password: <strong>admin</strong>
+              </div>
+              <div @click="email = 'user@demo.com'; password = 'user'" class="cursor-pointer">
+                User email: <strong>user@demo.com</strong> / Password: <strong>user</strong>
+              </div>
             </v-alert>
 
             <v-form @submit.prevent="login">
               <div class="text-subtitle-1 text-medium-emphasis">Email</div>
-              <v-text-field v-model="email" density="compact" placeholder="Email address"
-                variant="outlined"></v-text-field>
+              <v-text-field v-model="email" density="compact" placeholder="Email address" variant="outlined" />
 
               <div class="d-flex align-center justify-space-between">
                 <div class="text-subtitle-1 text-medium-emphasis">Password</div>
-                <a class="text-caption text-decoration-none text-primary" href="#" rel="noopener noreferrer"
-                  target="_blank">
+                <a class="text-decoration-none text-primary" href="#" rel="noopener noreferrer" target="_blank">
                   Forgot Password?</a>
               </div>
               <v-text-field v-model="password" :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="showPassword ? 'text' : 'password'" density="compact" placeholder="Enter your password"
-                variant="outlined" @click:append-inner="showPassword = !showPassword"></v-text-field>
+                variant="outlined" @click:append-inner="showPassword = !showPassword" />
 
-              <v-checkbox v-model="appStore.rememberPassword" label="Remember me" class="mt-n4"></v-checkbox>
+              <v-checkbox v-model="appStore.rememberPassword" label="Remember me" class="mt-n4" />
 
-              <v-btn block class="mb-4" color="primary" size="large" @click="login">
-                Login
-              </v-btn>
+              <v-btn block class="mb-4" color="primary" size="large" @click="login" text="Login"
+                :disabled="!email || !password" />
 
               <div class="text-center">
-                New on our platform?
-                <router-link to="/register" class="text-primary text-decoration-none">
-                  Create an account
-                </router-link>
+                No account yet?
+                <router-link to="/register" class="text-primary text-decoration-none"> Register </router-link>
               </div>
 
             </v-form>
           </v-card-text>
 
-          <v-card-text class="d-flex align-center justify-center flex-wrap">
-            <v-divider class="flex-grow-1 mx-2"></v-divider>
-            <span class="mx-2">or</span>
-            <v-divider class="flex-grow-1 mx-2"></v-divider>
+          <v-card-text class="d-flex align-center">
+            <v-divider />
+            <span class="text-caption text-uppercase mx-2"> or </span>
+            <v-divider />
           </v-card-text>
 
           <v-card-text class="d-flex justify-center">
-            <v-btn class="ma-1" icon="mdi-facebook" color="#4267B2" variant="text"></v-btn>
-            <v-btn class="ma-1" icon="mdi-twitter" color="#1DA1F2" variant="text"></v-btn>
-            <v-btn class="ma-1" icon="mdi-github" color="#333" variant="text"></v-btn>
-            <v-btn class="ma-1" icon="mdi-google" color="#DB4437" variant="text"></v-btn>
+            <v-btn density="compact" size="x-large" class="ma-1" icon="mdi-facebook" color="#4267B2" variant="text" />
+            <v-btn density="compact" size="x-large" class="ma-1" icon="mdi-twitter" color="#1DA1F2" variant="text" />
+            <v-btn density="compact" size="x-large" class="ma-1" icon="mdi-github" color="#333" variant="text" />
+            <v-btn density="compact" size="x-large" class="ma-1" icon="mdi-google" color="#DB4437" variant="text" />
           </v-card-text>
 
         </v-card>
@@ -89,17 +97,4 @@ const login = () => {
   </v-container>
 </template>
 
-<style scoped>
-.v-card-title {
-  font-size: 1.5rem !important;
-  font-weight: 500
-}
-
-.v-card-subtitle {
-  opacity: 0.7
-}
-
-.v-btn {
-  text-transform: none
-}
-</style>
+<style scoped></style>

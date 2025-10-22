@@ -1,4 +1,4 @@
-import { computed, ref, type Ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useTheme } from 'vuetify'
 import type { AppNavItem, AppTabItem, AppTheme, User } from '@/types'
@@ -9,6 +9,7 @@ export const useAppStore = defineStore('app', () => {
   // User
   const user = ref(null as User | null)
   const rememberPassword = ref(false)
+  const userInitials = computed(() => user.value?.name.split(' ').map(name => name[0]).join('') || '')
   const setUser = (_user: User | null) => user.value = _user
   // onAuthStateChanged(auth, (_user => user.value = _user)
 
@@ -17,14 +18,14 @@ export const useAppStore = defineStore('app', () => {
   const navRail = ref(false)
   const toggleNav = () => navOpen.value = !navOpen.value
   const toggleNavRail = () => navRail.value = !navRail.value
-  const navItems: Ref<AppNavItem[]> = ref([
+  const navItems: AppNavItem[] = [
     { title: 'Home', prependIcon: 'mdi-home', to: '/' },
     { title: 'About', prependIcon: 'mdi-information', to: '/about' },
-  ])
-  const tabItems: Ref<AppTabItem[]> = ref([
+  ]
+  const tabItems: AppTabItem[] = [
     { text: 'Home', prependIcon: 'mdi-home', to: '/' },
     { text: 'About', prependIcon: 'mdi-information', to: '/about' },
-  ])
+  ]
 
   // Themes
   const themes: AppTheme[] = [
@@ -56,6 +57,7 @@ export const useAppStore = defineStore('app', () => {
     // User
     user,
     rememberPassword,
+    userInitials,
     setUser,
     // Navigation
     navItems,
